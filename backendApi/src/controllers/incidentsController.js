@@ -22,5 +22,27 @@ module.exports = {
 
         return response.json({id})
 
+    },
+    // delete incident by id
+
+    async delete(request, response){
+        const { id } = request.params;
+        //recebe o id da ong, para depois verificar se o incidente a ser deletado pertence a ong
+        const ong_id = request.headers.authorization;
+
+        const incident = await connection('incidents')
+            .where('id', id)
+            .select('ong_id')
+            .first();
+
+        if(incident.ong_id != ong_id){
+            return response.status(401).json({error: 'Operation not permitted'});
+        }
+
+        await connection('incidents').where('id', id).delete();
+
+        return response.status(204).send();
+
     }
+
 };
