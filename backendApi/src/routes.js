@@ -2,6 +2,7 @@ const express = require('express');
 const OngController = require('./controllers/ongController');
 const IncidentsController = require('./controllers/incidentsController');
 const ProfilleController = require('./controllers/profilleController');
+const SessionController = require('./controllers/sessionController');
 
 
 const routes = express.Router();
@@ -23,6 +24,7 @@ routes.delete('/incidents/:id', IncidentsController.delete);
 // retorna todos os casos de uma determinada ong
 routes.get('/profile', ProfilleController.index)
 
-
+// login
+routes.post('/session', SessionController.create)
 
 module.exports = routes;
