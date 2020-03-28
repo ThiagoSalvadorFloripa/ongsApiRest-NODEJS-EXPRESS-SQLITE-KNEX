@@ -10,11 +10,19 @@ module.exports = {
         //consta os incidents retornando o total
         const [count] = await connection('incidents').count();
 
-        //paginação
+        //paginação e join com outra tabela para ve dados de outra tabela
         const incidents = await connection('incidents')
+            .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             .limit(5)
             .offset((page -1) * 5)
-            .select('*');
+            .select([
+                'incidents.*',
+                'ongs.name',
+                'ongs.email',
+                'ongs.whatsapp',
+                'ongs.city',
+                'ongs.uf'
+            ]);
 
         // passa o total de registro pelo cabeçaçho da requisição
         response.header('X-Total-Count', count['count(*)']);
