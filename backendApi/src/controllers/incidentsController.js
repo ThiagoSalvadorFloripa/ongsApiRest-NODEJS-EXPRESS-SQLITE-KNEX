@@ -2,9 +2,23 @@ const connection = require('../database/connection');
 
 module.exports = {
 
-    //list all incidetes
+    //list all incidetes paginado
     async index (request, response) {
-        const incidents = await connection('incidents').select('*');
+
+        const { page = 1 } = request.query;
+
+        //consta os incidents retornando o total
+        const [count] = await connection('incidents').count();
+
+        //paginação
+        const incidents = await connection('incidents')
+            .limit(5)
+            .offset((page -1) * 5)
+            .select('*');
+
+        // passa o total de registro pelo cabeçaçho da requisição
+        response.header('X-Total-Count', count['count(*)']);
+       
         return response.json(incidents);
     },
 
