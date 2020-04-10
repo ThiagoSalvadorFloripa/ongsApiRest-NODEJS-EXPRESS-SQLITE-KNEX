@@ -30,8 +30,7 @@ $ npm start
 
 <h3 class="code-line" data-line-start=62 data-line-end=63 ><a id="Note_62"></a>Note:</h3>
 <p class="has-line-data" data-line-start="63" data-line-end="64">This application is just the frontend, if you want backend go to</p>
-<p><a href="https://github.com/ThiagoSalvadorFloripa/taskManagementApiRest-SPRINGBOOT-MYSQL
-">ACCESS BACKEND!</a></p>
+<p><a href="https://github.com/ThiagoSalvadorFloripa/theBeHeroApp-ReactJS">ACCESS BACKEND!</a></p>
 
 <h3 class="code-line" data-line-start=64 data-line-end=65 ><a id="Version_64"></a>Version:</h3>
 <p class="has-line-data" data-line-start="65" data-line-end="66">1.0.0</p>
